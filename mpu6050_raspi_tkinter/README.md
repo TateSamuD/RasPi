@@ -14,9 +14,9 @@ This project involves reading data from an MPU6050 sensor connected to a Raspber
 ## Requirements
 
 - Raspberry Pi with Raspbian OS
-![Raspberry Pi 4](/tkinter_mpu6050/mpu6050_raspi_tkinter/misc/raspberry-pi-4.png)
+![Raspberry Pi 4](/mpu6050_raspi_tkinter/misc/raspberry-pi-4.png)
 - MPU6050 sensor
-![MPU6050 Sensor](/tkinter_mpu6050/mpu6050_raspi_tkinter/misc/MPU6050-Pinout.png)
+![MPU6050 Sensor](/mpu6050_raspi_tkinter/misc/MPU6050-Pinout.png)
 - Python 3
 - `smbus` library for I2C communication
 - `tkinter` library for GUI
@@ -29,6 +29,7 @@ This project involves reading data from an MPU6050 sensor connected to a Raspber
    sudo apt-get update
    sudo apt-get install python3-smbus
    sudo apt-get install python3-tk
+   pip install mpu6050-raspberrypi
    ```
 
 2. **Clone the Repository:**
@@ -46,7 +47,7 @@ This project involves reading data from an MPU6050 sensor connected to a Raspber
 
 ## Hardware Setup
 
-![Raspberry Pi to MPU6050 snesor Connection](/tkinter_mpu6050/mpu6050_raspi_tkinter/misc/mpu6050_raspi_connection.png)
+![Raspberry Pi to MPU6050 snesor Connection](/mpu6050_raspi_tkinter/misc/mpu6050_raspi_connection.png)
 
 1. Connect the MPU6050 sensor to the Raspberry Pi using the I2C interface. Double-check the wiring to ensure proper connections.
 2. Power up the Raspberry Pi.
