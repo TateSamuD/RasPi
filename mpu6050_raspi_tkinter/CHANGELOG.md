@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD024 -->
 # CHANGELOG
 
 ## Version Table of Content

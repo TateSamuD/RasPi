@@ -62,7 +62,7 @@ def update_mpu_rotation():
     # gyro_x, gyro_y, gyro_z = read_mpu_gyro_data()
 
     roll = math.atan2(accel_y, accel_z) * (180.0 / math.pi)
-    pitch = math.atan2(-accel_x, math.sqrt(accel_y^2 + accel_z^2)) * (180.0 / math.pi)
+    pitch = math.atan2(-accel_x, math.sqrt(accel_y**2 + accel_z**2)) * (180.0 / math.pi)
 
     label_var.set(f"Roll: {roll:.2f} degrees\nPitch: {pitch:.2f} degrees")
 
