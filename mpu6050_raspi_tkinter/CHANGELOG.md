@@ -4,6 +4,7 @@
 
 - [Version 0.1.0](#version-010-2024-01-01)
 - [Version 0.1.1](#verison-011-2024-01-01)
+- [Version 0.1.2](#version-012-2024-01-03)
 
 ## Version 0.1.0 (2024-01-01)
 
@@ -27,3 +28,13 @@ This is the initialisation of this project with rough code.
   - `update_mpu_rotation()`: This calls the 2 functions above and calculates the roll and pitch using the accelerometer data for which the new values update a tkinter label.
 - Added [TODO.md](/mpu6050_raspi_tkinter/TODO.md) file to project to hold noted expected changes
 - Directory restructured
+
+## Version 0.1.2 (2024-01-03)
+
+### Additions
+
+- Added module to display GUI over SSH
+
+### Changes
+
+- `read_mpu_accel_data()` and `read_mpu_gyro_data()` have been rewritten to have them pull the data straight from the sensor addresses for the respective axis

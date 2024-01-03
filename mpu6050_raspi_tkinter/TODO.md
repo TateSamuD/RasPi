@@ -5,6 +5,7 @@
 - Update [CHANGELOG](/mpu6050_raspi_tkinter/CHANGELOG.md) after every big alteration to code.
 - ~~Update directory structure.~~
 - ~~Update depricated directory links.~~
+- Fix dict problem in `accel`
 
 ## :orange_square: Medium Priority
 
