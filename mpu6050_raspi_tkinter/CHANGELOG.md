@@ -47,3 +47,9 @@ This is the initialisation of this project with rough code.
 
 - Crossing over to 3D plot diagram
 - Code cleanup (minor)
+
+## Version 0.2.1 (2024-01-10)
+
+### Changes
+
+- Switching from tkinter to pygame

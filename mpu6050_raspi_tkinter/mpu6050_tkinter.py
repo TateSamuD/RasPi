@@ -1,10 +1,7 @@
-import tkinter as tk
+import pygame
 import smbus2
 import math
 import os
-import mpl_toolkits.mplot3d.axes3d as p3
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 
 # MPU6050 address
@@ -39,74 +36,48 @@ def read_mpu_gyro_data():
     gyro_z = read_word(GYRO_ZOUT_H)
     return gyro_x, gyro_y, gyro_z
 
-def update_rotation_3D():
-    accel_x, accel_y, accel_z = read_mpu_accel_data()
-
-    roll = math.atan2(accel_y, accel_z) * (180.0 / math.pi)
-    pitch = math.atan2(-accel_x, math.sqrt(accel_y**2 + accel_z**2)) * (180.0 / math.pi)
-
-    # Update 3D plot
-    ax.cla()
-    ax.set_xlabel('X')
-    ax.set_ylabel('Y')
-    ax.set_zlabel('Z')
-    ax.set_xlim(-1, 1)
-    ax.set_ylim(-1, 1)
-    ax.set_zlim(-1, 1)
-    ax.set_title('MPU6050 Rotation Display')
-
-    # 3D Object Rotation
-    rotation_matrix_roll = np.array([
-        [1,0,0],
-        [0,math.cos(math.radians(roll)), -math.sin(math.radians(roll))],
-        [0,math.sin(math.radians(roll)), math.cos(math.radians(roll))]
-    ])
-
-    rotation_matrix_pitch = np.array([
-        [math.cos(math.radians(pitch)), 0, math.sin(math.radians(pitch))],
-        [0,1,0],
-        [-math.sin(math.radians(pitch)), 0, math.cos(math.radians(pitch))]
-    ])
-
-    rotation_matrix = np.dot(rotation_matrix_pitch, rotation_matrix_roll)
-
-    plane_vertices = np.array([
-        [-0.5, -0.5, 0],
-        [0.5, -0.5, 0],
-        [0.5, 0.5, 0],
-        [-0.5, 0.5, 0]
-    ])
-
-    rotated_plane = np.dot(plane_vertices, rotation_matrix)
-
-    rotated_plane = rotated_plane.reshape((4, 3))
-
-    ax.plot(rotated_plane[:,0], rotated_plane[:,1],rotated_plane[:, 2], color='b', alpha=0.6)
-
-    canvas.draw()
-    root.after(100, update_rotation_3D)
+def draw_rotated_rect(screen, color, rect, angle):
+    rotated_rect = pygame.transform.rotate(rect, angle)
+    new_rect = rotated_rect.get_rect(center=rect.center)
+    screen.blit(rotated_rect, new_rect.topleft)
 
 if os.environ.get('DISPLAY', '') == '':
     print('No Display Found.\nUsing: 0.0')
     os.environ.__setitem__('DISPLAY', ':0.0')
 
-# Initialize tkinter
-root = tk.Tk()
-root.title("MPU6050 3D Rotation Display")
+pygame.init()
+
+width, height = 800, 600
+screen = pygame.display.set_mode((width, height))
+pygame.display.set_caption("MPU6050 3D Rotation Display")
 
 # Initialize I2C bus
 bus = smbus2.SMBus(1)
 
-fig = plt.figure()
-ax =p3.Axes3D(fig)
+clock = pygame.time.Clock()
 
-# Tkinter Canvas
-canvas = FigureCanvasTkAgg(fig, master=root)
-canvas_widget = canvas.get_tk_widget()
-canvas_widget.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            exit()
 
-# Call the update function
-update_rotation_3D()
+    accel_x, accel_y, _ = read_mpu_accel_data()
+    roll = math.atan2(accel_y, 9.8) * (180.0 / math.pi)
 
-# Start the tkinter main loop
-root.mainloop()
+    # Clear the screen
+    screen.fill((255, 255, 255))
+
+    # Create a rectangle using Numpy
+    rect_size = (100, 50)
+    rect = pygame.Surface(rect_size)
+    rect.fill((0, 0, 255))
+    rect_center = np.array([width // 2, height // 2])
+    rect_pos = rect_center - np.array([rect_size[0] // 2, rect_size[1] // 2])
+    rect_rect = pygame.Rect(rect_pos[0], rect_pos[1], rect_size[0], rect_size[1])
+
+    # Draw the rotated rectangle
+    draw_rotated_rect(screen, (0, 0, 255), rect, roll)
+
+    pygame.display.flip()
+    clock.tick(60)
