@@ -30,6 +30,7 @@ This project involves reading data from an MPU6050 sensor connected to a Raspber
    sudo apt-get install python3-smbus
    sudo apt-get install python3-tk
    pip install mpu6050-raspberrypi
+   pip install matplotlib
    ```
 
 2. **Clone the Repository:**

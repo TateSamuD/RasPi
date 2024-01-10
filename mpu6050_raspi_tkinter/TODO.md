@@ -5,7 +5,7 @@
 - Update [CHANGELOG](/mpu6050_raspi_tkinter/CHANGELOG.md) after every big alteration to code.
 - ~~Update directory structure.~~
 - ~~Update depricated directory links.~~
-- Fix dict problem in `accel`
+- ~~Fix dict problem in `accel`~~
 
 ## :orange_square: Medium Priority
 
@@ -15,7 +15,7 @@
 ## :yellow_square: Low Priority
 
 - Update code documentation.
-- Create regression test cases.
+- Create test cases.
 - Review and update [README](/mpu6050_raspi_tkinter/README.md) where need be.
 
 ## :green_square: Future Enhancements
