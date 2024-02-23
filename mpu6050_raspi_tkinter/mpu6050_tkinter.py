@@ -7,7 +7,6 @@ import numpy as np
 # MPU6050 address
 MPU6050_ADDR = 0x68
 
-
 #MPU6050 Registers
 GYRO_XOUT_H = 0x43
 GYRO_YOUT_H = 0x45
