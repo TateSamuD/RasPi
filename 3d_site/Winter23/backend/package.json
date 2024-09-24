@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.19.2",
+    "express": "^4.21.0",
     "i2c-bus": "^5.2.3",
     "mpu6050-gyro": "^1.1.1",
     "nodemon": "^3.0.2",
