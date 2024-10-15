@@ -11,11 +11,11 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.21.0",
+    "express": "^4.21.1",
     "i2c-bus": "^5.2.3",
     "mpu6050-gyro": "^1.1.1",
     "nodemon": "^3.0.2",
-    "socket.io": "^4.7.2",
+    "socket.io": "^4.8.0",
     "three": "^0.159.0"
   }
 }
